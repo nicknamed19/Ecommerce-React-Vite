@@ -37,7 +37,7 @@ function NavBar() {
     const activeStyle = 'underline underline-offset-4';
     
     return (
-        <nav className='flex items-center justify-between w-full py-5 px-8 text-md'>
+        <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-base'>
             <ul className='flex items-center gap-3'>
               {sideA.map(({to, name, className}, index) => (
                 <NavItem 
