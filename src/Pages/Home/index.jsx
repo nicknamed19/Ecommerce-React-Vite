@@ -3,7 +3,7 @@ import { Layout } from "../../Components/Layout";
 import { Card } from "../../Components/Card";
 
 function Home() {
-    const API = 'https://api.escuelajs.co/api/v1/products';
+    const API = 'https://fakestoreapi.com/products';
 
     const [items, setItems] = useState(null);
     
@@ -21,9 +21,9 @@ function Home() {
                     <Card 
                     key={item.id}
                     name={item.title}
-                    category={item.category.name}
+                    category={item.category}
                     price={item.price}
-                    image={item.images[0]}/>
+                    image={item.image}/>
                 ))}            
             </div>
         </Layout>
