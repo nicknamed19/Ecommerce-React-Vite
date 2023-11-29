@@ -1,22 +1,6 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-
-const sideA = [
-    {to:'/', name: 'Shopi', className: 'font-semibold text-xl'},
-    {to:'/',  name: 'All'},
-    {to:'/clothes',  name: 'Clothes'},
-    {to:'/electronics',  name: 'Electronics'},
-    {to:'/furniture',  name: 'Furniture'},
-    {to:'/toys',  name: 'Toys'},
-    {to:'/others',  name: 'Others'},
-];
-
-const sideB = [
-    {to: false, name: 'Nickname', className: 'text-black/60'},
-    {to: '/my-orders', name: 'My Orders'},
-    {to: '/my-account', name: 'My Account'},
-    {to: '/sign-in', name: 'Sign In'},
-    {to: '/my-order', name: '🛒0'},
-];
+import { ShoppingCartContext } from "../../Context";
 
 const NavItem = ({to, className, name, activeStyle, index}) => {
     return (
@@ -30,10 +14,27 @@ const NavItem = ({to, className, name, activeStyle, index}) => {
     )
 }
 
-function NavBar() {
+function NavBar() {  
+    const {count} = useContext(ShoppingCartContext)
+
+    const sideA = [
+        {to:'/', name: 'Shopi', className: 'font-semibold text-xl'},
+        {to:'/',  name: 'All'},
+        {to:'/clothes',  name: 'Clothes'},
+        {to:'/electronics',  name: 'Electronics'},
+        {to:'/furniture',  name: 'Furniture'},
+        {to:'/toys',  name: 'Toys'},
+        {to:'/others',  name: 'Others'},
+    ];
     
-    
-    
+    const sideB = [
+        {to: false, name: 'Nickname', className: 'text-black/60'},
+        {to: '/my-orders', name: 'My Orders'},
+        {to: '/my-account', name: 'My Account'},
+        {to: '/sign-in', name: 'Sign In'},
+        {to: '/my-order', name: `🛒 ${count}`},
+    ];
+
     const activeStyle = 'underline underline-offset-4';
     
     return (
@@ -67,5 +68,4 @@ function NavBar() {
 }
 
 export { NavBar };
-
 

@@ -17,7 +17,7 @@ function Home() {
     return (
         <Layout>
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
-                {items?.slice(0,35).map((item) => (
+                {items?.map((item) => (
                     <Card 
                     key={item.id}
                     name={item.title}
