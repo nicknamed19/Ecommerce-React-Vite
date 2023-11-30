@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartContext } from "../../Context";
 
-const NavItem = ({to, className, name, activeStyle, index}) => {
+const NavItem = ({to, className, name, activeStyle, icon, index}) => {
     return (
         <li className={className}>
+            <div>{icon}</div>
             <NavLink 
-                to={to} 
+                to={to}
                 className={({isActive}) => isActive && index ? activeStyle : undefined }>
                 {name}
             </NavLink>
@@ -16,6 +18,8 @@ const NavItem = ({to, className, name, activeStyle, index}) => {
 
 function NavBar() {  
     const {count} = useContext(ShoppingCartContext)
+
+    const activeStyle = 'underline underline-offset-4';
 
     const sideA = [
         {to:'/', name: 'Shopi', className: 'font-semibold text-xl'},
@@ -32,10 +36,9 @@ function NavBar() {
         {to: '/my-orders', name: 'My Orders'},
         {to: '/my-account', name: 'My Account'},
         {to: '/sign-in', name: 'Sign In'},
-        {to: '/my-order', name: `🛒 ${count}`},
+        {to: '/my-order', name: count, icon: <ShoppingCartIcon className='w-6 h-6'/>, className: 'flex items-center gap-1'},
     ];
-
-    const activeStyle = 'underline underline-offset-4';
+    
     
     return (
         <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-base bg-white border-b border-solid border-gray-400 shadow-md'>
@@ -52,13 +55,14 @@ function NavBar() {
             </ul>
 
             <ul className='flex items-center gap-3'>
-              {sideB.map(({to, name, className}, index) => (
+              {sideB.map(({to, name, className, icon}, index) => (
                 <NavItem 
                 key={name}
                 to={to}
                 name={name}
                 className={className}
                 activeStyle={activeStyle}
+                icon={icon}
                 index={index}/>
               ))}
             </ul>                       
