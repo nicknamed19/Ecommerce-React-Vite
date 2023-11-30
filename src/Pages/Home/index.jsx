@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Layout } from "../../Components/Layout";
 import { Card } from "../../Components/Card";
+import { ProductDetail } from "../../Components/ProductDetail";
 
 function Home() {
     const API = 'https://fakestoreapi.com/products';
@@ -26,6 +27,7 @@ function Home() {
                     image={item.image}/>
                 ))}            
             </div>
+            <ProductDetail />
         </Layout>
     )
 }

@@ -5,7 +5,7 @@ function Card({name, price, category, image}) {
     const {count, setCount} = useContext(ShoppingCartContext);
 
     return(
-        <div className='bg-white cursor-pointer w-56 h-60 rounded-lg'>
+        <div className='bg-white cursor-pointer w-48 h-56 rounded-lg'>
             <figure className='relative mb-2 w-full h-4/5'>
                 <div
                     onClick={() => setCount(count + 1)}
