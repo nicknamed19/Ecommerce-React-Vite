@@ -14,6 +14,9 @@ function ShoppingCartProvider({children}) {
     //Estado para enviar y mostrar la información de la card al product detail
     const [productToShow, setProductToShow] = useState({})
 
+    //Estado para enviar la información al shopping cart
+    const [cartProducts, setCartProducts] = useState([])
+
     return(
         <ShoppingCartContext.Provider value={{
             count,
@@ -23,6 +26,8 @@ function ShoppingCartProvider({children}) {
             isOpenDetails,
             productToShow,
             setProductToShow,
+            cartProducts,
+            setCartProducts,
         }}>
             {children}
         </ShoppingCartContext.Provider>
