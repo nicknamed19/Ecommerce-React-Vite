@@ -24,7 +24,8 @@ function Home() {
                     name={item.title}
                     category={item.category}
                     price={item.price}
-                    image={item.image}/>
+                    image={item.image}
+                    description={item.description}/>
                 ))}            
             </div>
             <ProductDetail />
