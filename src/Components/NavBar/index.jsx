@@ -6,7 +6,7 @@ import { ShoppingCartContext } from "../../Context";
 const NavItem = ({to, className, name, activeStyle, icon, index}) => {
     return (
         <li className={className}>
-            <div>{icon}</div>
+            <div className='cursor-pointer'>{icon}</div>
             <NavLink 
                 to={to}
                 className={({isActive}) => isActive && index ? activeStyle : undefined }>
