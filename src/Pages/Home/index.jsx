@@ -27,8 +27,7 @@ function Home() {
                     image={item.image}
                     description={item.description}/>
                 ))}            
-            </div>
-            <ProductDetail />
+            </div>            
         </Layout>
     )
 }

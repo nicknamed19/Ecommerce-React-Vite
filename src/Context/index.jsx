@@ -6,10 +6,15 @@ function ShoppingCartProvider({children}) {
     //Estado para contar productos en el carrito
     const [count, setCount] = useState(0)
 
-    //Estado y funciones para abriri y cerrar lo siders
-    const [isOpenSide, setisOpenSide] = useState(false)
-    const openSide = () => setisOpenSide(true)
-    const closeSide = () => setisOpenSide(false)
+    //Estado y funciones para manejar el product detail
+    const [isOpenDetails, setisOpenDetails] = useState(false)
+    const openDetails = () => setisOpenDetails(true)
+    const closeDetails = () => setisOpenDetails(false)
+
+    //Estado y funciones para manejar el Cheackout side menu
+    const [isOpenCheckout, setisOpenCheckout] = useState(false)
+    const openCheckout = () => setisOpenCheckout(true)
+    const closeCheckout = () => setisOpenCheckout(false)
 
     //Estado para enviar y mostrar la información de la card al product detail
     const [productToShow, setProductToShow] = useState({})
@@ -21,9 +26,12 @@ function ShoppingCartProvider({children}) {
         <ShoppingCartContext.Provider value={{
             count,
             setCount,
-            openSide,
-            closeSide,
-            isOpenSide,
+            openDetails,
+            closeDetails,
+            isOpenDetails,
+            openCheckout,
+            closeCheckout,
+            isOpenCheckout,
             productToShow,
             setProductToShow,
             cartProducts,

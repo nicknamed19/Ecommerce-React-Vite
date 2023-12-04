@@ -5,18 +5,24 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 function Card({name, price, category, image, description}) {
     const {count, 
            setCount, 
-           openSide, 
+           openDetails, 
            setProductToShow,
            setCartProducts, 
-           cartProducts} = useContext(ShoppingCartContext);
+           cartProducts,
+           openCheckout,
+           closeDetails,
+           closeCheckout,} = useContext(ShoppingCartContext);
 
     const showProduct = () => {
-        openSide()
+        openDetails()
+        closeCheckout()
         setProductToShow({name, price, category, image, description})
     }
 
     const addProducts = () => {
         setCount(count + 1)
+        openCheckout()
+        closeDetails()
         setCartProducts([...cartProducts,{name, price, category, image, description}])
     }
 
