@@ -3,10 +3,15 @@ import { ShoppingCartContext } from "../../Context";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 function Card({name, price, category, image, description}) {
-    const {count, setCount, openDetails, setProductToShow,setCartProducts, cartProducts} = useContext(ShoppingCartContext);
+    const {count, 
+           setCount, 
+           openSide, 
+           setProductToShow,
+           setCartProducts, 
+           cartProducts} = useContext(ShoppingCartContext);
 
     const showProduct = () => {
-        openDetails()
+        openSide()
         setProductToShow({name, price, category, image, description})
     }
 

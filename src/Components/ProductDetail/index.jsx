@@ -3,18 +3,20 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import {ShoppingCartContext} from '../../Context'
 
 function ProductDetail() {
-    const {isOpenDetails, closeDetails, productToShow} = useContext(ShoppingCartContext)
+    const {isOpenSide, 
+           closeSide, 
+           productToShow} = useContext(ShoppingCartContext)
     
     const {name, price, category, image, description} = productToShow
     
 
     return(
-        <aside className={`${isOpenDetails ? 'flex' : 'hidden'} flex-col fixed right-0 w-[280px] h-[100vh] border border-black rounded-lg bg-white`}>
+        <aside className={`${isOpenSide ? 'flex' : 'hidden'} flex-col fixed right-0 w-[280px] h-[100vh] border border-black rounded-lg bg-white`}>
             <div className='flex  justify-between p-4 items-center'>
                 <h2 className='font-medium text-xl'>Details</h2>
                 <XMarkIcon 
                     className='w-6 h-6 cursor-pointer' 
-                    onClick={() => closeDetails()}/>
+                    onClick={() => closeSide()}/>
             </div>
 
             <figure className='px-6'>
