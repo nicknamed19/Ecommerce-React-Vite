@@ -17,7 +17,7 @@ const NavItem = ({to, className, name, activeStyle, icon, index}) => {
 }
 
 function NavBar() {  
-    const {count} = useContext(ShoppingCartContext)
+    const {cartProducts} = useContext(ShoppingCartContext)
 
     const activeStyle = 'underline underline-offset-4';
 
@@ -36,7 +36,7 @@ function NavBar() {
         {to: '/my-orders', name: 'My Orders'},
         {to: '/my-account', name: 'My Account'},
         {to: '/sign-in', name: 'Sign In'},
-        {to: '/my-order', name: count, icon: <ShoppingCartIcon className='w-6 h-6'/>, className: 'flex items-center gap-1'},
+        {to: '/my-order', name: cartProducts.length, icon: <ShoppingCartIcon className='w-6 h-6'/>, className: 'flex items-center gap-1'},
     ];
     
     
