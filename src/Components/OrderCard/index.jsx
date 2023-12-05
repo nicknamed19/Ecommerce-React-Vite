@@ -1,6 +1,6 @@
+import { XMarkIcon } from "@heroicons/react/24/solid"
 
-
-function OrderCard({name, price, image}) {
+function OrderCard({id, name, price, image, handleDelete}) {
     
     return(
         <div className='flex justify-between items-center mb-3 mx-2 p-2 bg-gray-100 rounded-lg shadow-md'>
@@ -11,7 +11,7 @@ function OrderCard({name, price, image}) {
                 <p className='text-sm font-light w-[110px] h-[40px] overflow-hidden'>{name}</p>
             </div>
             <div className='flex flex-col items-end gap-3'>
-                <p className='cursor-pointer text-gray-500 hover:text-red-600 text-base'>Remove</p>
+                <XMarkIcon onClick={() => handleDelete(id)} className='h-4 w-4 cursor-pointer hover:text-red-600' />                
                 <span className='text-base font-medium'>${price}</span>
             </div>
         </div>
