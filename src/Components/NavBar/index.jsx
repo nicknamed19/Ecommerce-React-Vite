@@ -3,10 +3,28 @@ import { NavLink } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartContext } from "../../Context";
 
-const NavItem = ({to, className, name, activeStyle, icon, index}) => {
+function NavItem({
+    to, 
+    className, 
+    name, 
+    activeStyle, 
+    icon, 
+    isOpenCheckout, 
+    open, 
+    close, 
+    index
+}) {
+
     return (
         <li className={className}>
-            <div className='cursor-pointer'>{icon}</div>
+            <div 
+                className='cursor-pointer' 
+                onClick={() => {
+                    isOpenCheckout ? close() : open()
+                }}>
+                {icon}
+            </div>
+
             <NavLink 
                 to={to}
                 className={({isActive}) => isActive && index ? activeStyle : undefined }>
@@ -17,7 +35,10 @@ const NavItem = ({to, className, name, activeStyle, icon, index}) => {
 }
 
 function NavBar() {  
-    const {cartProducts} = useContext(ShoppingCartContext)
+    const {cartProducts, 
+           isOpenCheckout, 
+           openCheckout, 
+           closeCheckout} = useContext(ShoppingCartContext)
 
     const activeStyle = 'underline underline-offset-4';
 
@@ -36,7 +57,15 @@ function NavBar() {
         {to: '/my-orders', name: 'My Orders'},
         {to: '/my-account', name: 'My Account'},
         {to: '/sign-in', name: 'Sign In'},
-        {to: '/my-order', name: cartProducts.length, icon: <ShoppingCartIcon className='w-6 h-6'/>, className: 'flex items-center gap-1'},
+        {
+            to: '/my-order', 
+            name: cartProducts.length, 
+            className: 'flex items-center gap-1',
+            icon: <ShoppingCartIcon className='w-6 h-6'/>,
+            state: isOpenCheckout, 
+            open: openCheckout,
+            close: closeCheckout,
+        },
     ];
     
     
@@ -55,7 +84,7 @@ function NavBar() {
             </ul>
 
             <ul className='flex items-center gap-3'>
-              {sideB.map(({to, name, className, icon}, index) => (
+              {sideB.map(({to, name, className, icon, state, open, close}, index) => (
                 <NavItem 
                 key={name}
                 to={to}
@@ -63,6 +92,9 @@ function NavBar() {
                 className={className}
                 activeStyle={activeStyle}
                 icon={icon}
+                isOpenCheckout={state}
+                open={open}
+                close={close}
                 index={index}/>
               ))}
             </ul>                       
