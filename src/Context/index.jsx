@@ -3,8 +3,6 @@ import { createContext, useState } from 'react';
 const ShoppingCartContext = createContext();
 
 function ShoppingCartProvider({children}) {
-    //Estado para contar productos en el carrito
-    const [count, setCount] = useState(0)
 
     //Estado y funciones para manejar el product detail
     const [isOpenDetails, setisOpenDetails] = useState(false)
@@ -24,8 +22,6 @@ function ShoppingCartProvider({children}) {
 
     return(
         <ShoppingCartContext.Provider value={{
-            count,
-            setCount,
             openDetails,
             closeDetails,
             isOpenDetails,
