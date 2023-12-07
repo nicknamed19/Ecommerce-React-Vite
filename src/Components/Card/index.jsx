@@ -2,7 +2,9 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
 import { PlusIcon, CheckIcon } from "@heroicons/react/24/solid";
 
-function Card({id, name, price, category, image, description}) {
+function Card(props) {
+    const {id, name, price, category, image, description,} = props
+
     const {openDetails, 
            setProductToShow,
            setCartProducts, 
@@ -16,9 +18,10 @@ function Card({id, name, price, category, image, description}) {
         setProductToShow({name, price, category, image, description})
     }
 
-    const addProducts = () => {
+    const addProducts = (e, props) => {
+        e.stopPropagation()
         closeDetails()
-        setCartProducts([...cartProducts,{id, name, price, category, image, description}])
+        setCartProducts([...cartProducts, {...props, quantity: 1}])        
     }
 
     const renderIcons = (productId) => {
@@ -34,9 +37,7 @@ function Card({id, name, price, category, image, description}) {
                 : 
                     <div
                         className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            addProducts()}}>
+                        onClick={(e) => addProducts(e, props)}>
                         <PlusIcon className='h-6 w-6 text-black'></PlusIcon>
                     </div>
         )

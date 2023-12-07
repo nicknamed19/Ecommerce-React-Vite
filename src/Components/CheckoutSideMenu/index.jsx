@@ -8,15 +8,12 @@ function CheckoutSideMenu() {
     const {closeCheckout, 
            isOpenCheckout, 
            cartProducts,
-           setCartProducts,} = useContext(ShoppingCartContext)
-
-    const handleDelete = (id) => {
-        const newCartProducts = cartProducts.filter(product => product.id != id)
-        setCartProducts(newCartProducts)
-    }
+           increaseQuantities,
+           decreaseQuantities,
+           handleDelete,} = useContext(ShoppingCartContext)
     
     return(
-        <aside className={`${isOpenCheckout ? 'flex' : 'hidden'} flex-col fixed right-0 w-[280px] h-[90vh] border border-black rounded-lg bg-white z-10`}>
+        <aside className={`${isOpenCheckout ? 'flex' : 'hidden'} flex-col fixed right-0 w-[285px] h-[90vh] border border-black rounded-lg bg-white z-10`}>
             <div className='flex  justify-between p-4 items-center'>
                 <h2 className='font-medium text-xl'>Checkout</h2>
                 <XMarkIcon 
@@ -31,10 +28,13 @@ function CheckoutSideMenu() {
                 name={product.name}
                 price={product.price}
                 image={product.image}
-                handleDelete={handleDelete}/>
+                handleDelete={handleDelete}
+                quantity={product.quantity}
+                increaseQuantities={increaseQuantities}
+                decreaseQuantities={decreaseQuantities}/>
             ))}
             </div>
-            <p className='flex justify-between px-3.5 text-xl'>
+            <p className=' flex items-center justify-between px-3.5 text-xl sticky bottom-0 py-4 bg-gray-50'>
                 <span>Total</span>
                 <span className='font-semibold'>${totalPrice(cartProducts)}</span>
             </p>

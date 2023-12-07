@@ -20,6 +20,33 @@ function ShoppingCartProvider({children}) {
     //Estado para agrupar la informacion del shopping cart
     const [cartProducts, setCartProducts] = useState([])
 
+    //Funcion para eliminar productos del checkout menu
+    const handleDelete = (id) => {
+        const newCartProducts = cartProducts.filter(product => product.id != id)
+        setCartProducts(newCartProducts)
+    }
+
+    //Funcion para aumentar la cantidad de productos
+    const increaseQuantities = (id) => {
+        const productData = cartProducts.find((product) => product.id === id)
+        productData.quantity += 1 
+        setCartProducts([...cartProducts])
+    }
+
+    //Funcion para disminuir la cantidad de productos
+    const decreaseQuantities = (id) => {
+        const productData = cartProducts.find((product) => product.id === id)
+        productData.quantity -= 1
+        setCartProducts([...cartProducts])
+        
+        if(productData.quantity === 0){
+            handleDelete(id)
+        } 
+        
+    }
+
+
+
     return(
         <ShoppingCartContext.Provider value={{
             openDetails,
@@ -32,6 +59,9 @@ function ShoppingCartProvider({children}) {
             setProductToShow,
             cartProducts,
             setCartProducts,
+            increaseQuantities,
+            handleDelete,
+            decreaseQuantities,
         }}>
             {children}
         </ShoppingCartContext.Provider>
