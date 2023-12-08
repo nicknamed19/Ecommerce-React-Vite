@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { ChevronLeftIcon } from "@heroicons/react/24/solid"
 import { ShoppingCartContext } from "../../Context";
 import { OrderCard } from "../../Components/OrderCard";
 import { Layout } from "../../Components/Layout";
@@ -23,10 +25,17 @@ function MyOrder() {
             :
                 <p>No se ha seleccionado una orden</p>
     )
-    
+
     return (
         <Layout>
-            My Order
+            <div className='flex w-80 justify-center items-center relative mb-5'>
+                <Link to='/my-orders' className='absolute left-0'>
+                    <ChevronLeftIcon className='w-6 h-6 cursor-pointer' />                
+                </Link>
+                <p>
+                    My Order
+                </p>
+            </div>
             {renderMyOrderCart()}
         </Layout>
     )

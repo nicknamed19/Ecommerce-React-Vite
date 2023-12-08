@@ -19,9 +19,6 @@ function ShoppingCartProvider({children}) {
 
     //Estado para agrupar los productos del checkout menu
     const [cartProducts, setCartProducts] = useState([])
-    
-    //Estado para agrupar la informacion del shopping cart
-    const [order, setOrder] = useState([])
 
     //Funcion para eliminar productos del checkout menu
     const handleDelete = (id) => {
@@ -48,6 +45,9 @@ function ShoppingCartProvider({children}) {
         
     }
 
+    //Estado para agrupar la informacion del shopping cart
+    const [order, setOrder] = useState([])
+    
     //Funcion para agupar la informacion de cada orden
     const handleCheckout = (totalPrice) => {
         const addToOrder = {
