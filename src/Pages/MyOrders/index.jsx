@@ -1,9 +1,9 @@
 import { Layout } from "../../Components/Layout";
 
-function MyOrders() {
+function MyOrders() {    
     return (
         <Layout>
-            My Orders
+            My Orders            
         </Layout>
     )
 }

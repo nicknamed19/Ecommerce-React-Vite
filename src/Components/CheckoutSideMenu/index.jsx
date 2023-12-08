@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from '../../Context'
 import { OrderCard } from '../OrderCard'
@@ -26,31 +27,33 @@ function CheckoutSideMenu() {
                     onClick={() => closeCheckout()}/>
             </div>
             <div className='flex-1 overflow-y-scroll [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300'>
-            {cartProducts.map(product => (
-                <OrderCard 
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                price={product.price}
-                image={product.image}
-                handleDelete={handleDelete}
-                quantity={product.quantity}
-                increaseQuantities={increaseQuantities}
-                decreaseQuantities={decreaseQuantities}/>
-            ))}
+                {cartProducts.map(product => (
+                    <OrderCard 
+                    key={product.id}
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    image={product.image}
+                    handleDelete={handleDelete}
+                    quantity={product.quantity}
+                    increaseQuantities={increaseQuantities}
+                    decreaseQuantities={decreaseQuantities}/>
+                ))}
             </div>
             <div className='px-6'>
                 <p className='mb-2 flex items-center justify-between text-xl py-4 bg-gray-50'>
                     <span>Total</span>
                     <span className='font-semibold'>${totalPrice(cartProducts)}</span>
                 </p>
-                <button 
-                    disabled ={cartProducts.length === 0}
-                    className='bg-black py-3 text-white w-full rounded-lg mb-4' 
-                    onClick={() => handleCheckout(totalPrice)}
-                >
-                    Checkout
-                </button>
+                <Link to={'/my-order'}>
+                    <button 
+                        disabled ={cartProducts.length === 0}
+                        className='bg-black py-3 text-white w-full rounded-lg mb-4' 
+                        onClick={() => handleCheckout(totalPrice)}
+                    >
+                        Checkout
+                    </button>
+                </Link>
             </div>
         </aside>
     )
