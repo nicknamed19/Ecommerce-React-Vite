@@ -17,8 +17,11 @@ function ShoppingCartProvider({children}) {
     //Estado para enviar y mostrar la información de la card al product detail
     const [productToShow, setProductToShow] = useState({})
 
-    //Estado para agrupar la informacion del shopping cart
+    //Estado para agrupar los productos del checkout menu
     const [cartProducts, setCartProducts] = useState([])
+    
+    //Estado para agrupar la informacion del shopping cart
+    const [order, setOrder] = useState([])
 
     //Funcion para eliminar productos del checkout menu
     const handleDelete = (id) => {
@@ -45,7 +48,18 @@ function ShoppingCartProvider({children}) {
         
     }
 
+    //Funcion para agupar la informacion de cada orden
+    const handleCheckout = (totalPrice) => {
+        const addToOrder = {
+            date: '7.12.23',
+            products: cartProducts,
+            totalProducts: cartProducts.length,
+            totalPrice: totalPrice(cartProducts),
+        }
+        setOrder([...order, addToOrder])
 
+        setCartProducts([])
+    }
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -62,6 +76,9 @@ function ShoppingCartProvider({children}) {
             increaseQuantities,
             handleDelete,
             decreaseQuantities,
+            order, 
+            setOrder,
+            handleCheckout,
         }}>
             {children}
         </ShoppingCartContext.Provider>
