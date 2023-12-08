@@ -59,6 +59,7 @@ function ShoppingCartProvider({children}) {
         setOrder([...order, addToOrder])
 
         setCartProducts([])
+        closeCheckout()
     }
 
     return(
