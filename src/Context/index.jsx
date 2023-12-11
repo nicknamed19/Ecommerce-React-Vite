@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 const ShoppingCartContext = createContext();
 
@@ -68,6 +68,20 @@ function ShoppingCartProvider({children}) {
         closeCheckout()
     }
 
+    //Manejo de la API y el estado que maneja la información
+    const API = 'https://fakestoreapi.com/products';
+
+    const [items, setItems] = useState(null);
+    
+    useEffect(() => {
+        fetch(API)
+            .then(response => response.json())
+            .then(data => setItems(data))
+            .catch(error => console.log(error))
+    }, [])
+
+    const [searchValue, setSearchValue] = useState(null)
+
     return(
         <ShoppingCartContext.Provider value={{
             openDetails,
@@ -86,6 +100,10 @@ function ShoppingCartProvider({children}) {
             order, 
             setOrder,
             handleCheckout,
+            items, 
+            setItems,
+            searchValue, 
+            setSearchValue,
         }}>
             {children}
         </ShoppingCartContext.Provider>
