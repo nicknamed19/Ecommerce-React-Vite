@@ -10,9 +10,9 @@ function MyOrders() {
             My Orders
             {
                 order.map((order, index) => (
-
                     <OrdersCard 
-                        key={index}
+                        key={index}                        
+                        id={index}                        
                         date={order.date}
                         totalProducts={order.totalProducts}
                         totalPrice={order.totalPrice}

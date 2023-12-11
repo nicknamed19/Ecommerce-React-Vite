@@ -15,8 +15,6 @@ function CheckoutSideMenu() {
         handleDelete,
         handleCheckout
     } = useContext(ShoppingCartContext)
-
-    
     
     return(
         <aside className={`${isOpenCheckout ? 'flex' : 'hidden'} flex-col fixed right-0 w-[285px] h-[90vh] border border-black rounded-lg bg-white z-10`}>

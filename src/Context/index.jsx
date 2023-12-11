@@ -50,8 +50,14 @@ function ShoppingCartProvider({children}) {
     
     //Funcion para agupar la informacion de cada orden
     const handleCheckout = (totalPrice) => {
+
+        const currentDate = () => {
+            const date = new Date().toLocaleDateString();
+            return date
+         }
+
         const addToOrder = {
-            date: '7.12.23',
+            date: currentDate(),
             products: cartProducts,
             totalProducts: cartProducts.length,
             totalPrice: totalPrice(cartProducts),

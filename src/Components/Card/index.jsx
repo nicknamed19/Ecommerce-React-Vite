@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
 import { PlusIcon, CheckIcon } from "@heroicons/react/24/solid";
 
-function Card(props) {
+function Card(props) { 
     const {id, name, price, category, image, description,} = props
 
     const {openDetails, 
