@@ -7,6 +7,7 @@ import { Layout } from "../../Components/Layout";
 
 function MyOrder() {
     const { order } = useContext(ShoppingCartContext)
+    
     const currentPath = window.location.pathname
     let index = currentPath.substring(currentPath.lastIndexOf('/') + 1)
     if (index === 'my-order') index = order?.length - 1
