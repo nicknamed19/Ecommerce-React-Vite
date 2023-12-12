@@ -5,13 +5,13 @@ import { Card } from "../../Components/Card";
 import { SearchProducts } from "../../Components/SearchProducts";
 
 function Home() {
-    const {items} = useContext(ShoppingCartContext)
+    const { searcheadItems } = useContext(ShoppingCartContext)
     
     return (
         <Layout>
             <SearchProducts title={'All Products'}/>
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
-                {items?.map((item) => (
+                {searcheadItems?.map((item) => (
                     <Card 
                     key={item.id}
                     id={item.id}

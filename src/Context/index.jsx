@@ -80,7 +80,14 @@ function ShoppingCartProvider({children}) {
             .catch(error => console.log(error))
     }, [])
 
-    const [searchValue, setSearchValue] = useState(null)
+    const [searchValue, setSearchValue] = useState('')
+
+    const searcheadItems = items?.filter((item) =>{
+        const searchValueText = searchValue?.toLowerCase()
+    
+        return item.title.toLowerCase().includes(searchValueText)
+    })
+        
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -104,6 +111,7 @@ function ShoppingCartProvider({children}) {
             setItems,
             searchValue, 
             setSearchValue,
+            searcheadItems,
         }}>
             {children}
         </ShoppingCartContext.Provider>

@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
 
 function SearchProducts ({title}) {
-    const { setSearchValue }= useContext(ShoppingCartContext)
+    const { searchValue, setSearchValue }= useContext(ShoppingCartContext)
 
     return (
         <>
@@ -13,7 +13,8 @@ function SearchProducts ({title}) {
                 type='text' 
                 placeholder='Search a product' 
                 onChange={(e) => setSearchValue(e.target.value)}
-                className='rounded-lg border border-black w-80 h-10 p-4 mb-6'/>
+                className='rounded-lg border border-black w-80 h-10 p-4 mb-6'
+                value={searchValue}/>
         </>
     )
 }
