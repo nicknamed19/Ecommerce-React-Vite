@@ -3,17 +3,7 @@ import { NavLink } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartContext } from "../../Context";
 
-function NavItem({
-    to, 
-    className, 
-    name, 
-    activeStyle, 
-    icon, 
-    isOpenCheckout, 
-    open, 
-    close, 
-    index
-}) {
+function NavItem({ to, className, name, activeStyle, icon, isOpenCheckout, open, close, setCategoryPath, category, index}) {
 
     return (
         <li className={className}>
@@ -27,7 +17,10 @@ function NavItem({
 
             <NavLink 
                 to={to}
-                className={({isActive}) => isActive && index ? activeStyle : undefined }>
+                className={({isActive}) => isActive && index ? activeStyle : undefined }
+                onClick={() => {
+                    category ? setCategoryPath(category) : ''
+                }}>
                 {name}
             </NavLink>
         </li>
@@ -38,18 +31,19 @@ function NavBar() {
     const {cartProducts, 
            isOpenCheckout, 
            openCheckout, 
-           closeCheckout} = useContext(ShoppingCartContext)
+           closeCheckout,
+           setCategoryPath} = useContext(ShoppingCartContext)
 
     const activeStyle = 'underline underline-offset-4';
 
     const sideA = [
-        {to:'/', name: 'Shopi', className: 'font-semibold text-xl'},
-        {to:'/',  name: 'All'},
-        {to:'/clothes',  name: 'Clothes'},
-        {to:'/electronics',  name: 'Electronics'},
-        {to:'/furniture',  name: 'Furniture'},
-        {to:'/toys',  name: 'Toys'},
-        {to:'/others',  name: 'Others'},
+        {to:'/', name: 'Shopi', category: 'All', className: 'font-semibold text-xl'},
+        {to:'/',  name: 'All', category: 'All'},
+        {to:'/clothes',  name: 'Clothes', category: 'clothing'},
+        {to:'/electronics',  name: 'Electronics', category: 'Electronics'},
+        {to:'/furniture',  name: 'Jewelery', category: 'Jewelery'},
+        {to:'/toys',  name: 'Toys', category: 'Toys'},
+        {to:'/others',  name: 'Others', category: 'Others'},
     ];
     
     const sideB = [
@@ -72,14 +66,16 @@ function NavBar() {
     return (
         <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-base bg-white border-b border-solid border-gray-400 shadow-md'>
             <ul className='flex items-center gap-3'>
-              {sideA.map(({to, name, className}, index) => (
+              {sideA.map(({to, name, className, category}, index) => (
                 <NavItem 
                 key={name}
                 to={to}
                 name={name}
                 className={className}
                 activeStyle={activeStyle}
-                index={index}/>
+                index={index}
+                setCategoryPath={setCategoryPath}
+                category={category}/>
               ))}
             </ul>
 
