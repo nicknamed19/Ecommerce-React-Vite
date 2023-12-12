@@ -66,6 +66,7 @@ function ShoppingCartProvider({children}) {
 
         setCartProducts([])
         closeCheckout()
+        setSearchValue('')
     }
 
     //Manejo de la API y el estado que maneja la información
@@ -80,14 +81,33 @@ function ShoppingCartProvider({children}) {
             .catch(error => console.log(error))
     }, [])
 
+    //Almacenamiento para los valores en la barra de busqueda
     const [searchValue, setSearchValue] = useState('')
 
+    //Estado para almacenar el nombre de las rutas por categoria
+    const [categoryPath, setCategoryPath] = useState('')
+
+    //Variable para renderizar los productos que coincidan con la barra de busqueda
     const searcheadItems = items?.filter((item) =>{
         const searchValueText = searchValue?.toLowerCase()
     
         return item.title.toLowerCase().includes(searchValueText)
     })
-        
+
+    //Variable para almacenar el filtro los elementos a partir de las categorias
+    const searcheadCategories = items?.filter((item) =>{
+        const searchCategoryText = categoryPath?.toLowerCase()
+    
+        return item.category.toLowerCase().includes(searchCategoryText)
+    })
+    
+    //Variable para renderizar los productos que coincidan en categoria y en la barra de busqueda
+    const renderPages = searcheadCategories?.filter((item) => {
+        const searchValueText = searchValue?.toLowerCase()
+
+        return item.title.toLowerCase().includes(searchValueText)
+    }) 
+
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -111,7 +131,11 @@ function ShoppingCartProvider({children}) {
             setItems,
             searchValue, 
             setSearchValue,
+            categoryPath, 
+            setCategoryPath,
             searcheadItems,
+            searcheadCategories,
+            renderPages,
         }}>
             {children}
         </ShoppingCartContext.Provider>
